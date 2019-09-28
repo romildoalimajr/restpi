@@ -10,7 +10,7 @@ package bean;
  * @author ALPHA OMEGA
  */
 public class UsuarioBean {
-    
+    private int codigo;
     private String nome;
     private String login;
     private String senha;
@@ -22,6 +22,12 @@ public class UsuarioBean {
         this.nome   = nome;
         this.login  = login;
         this.senha  = senha;
+    }
+    public void setCodigo(int codigo){
+        this.codigo = codigo;
+    }
+    public int getCodigo(){
+        return codigo;
     }
     public void setNome(String nome){
         this.nome = nome;

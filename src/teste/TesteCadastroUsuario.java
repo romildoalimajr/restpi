@@ -11,26 +11,38 @@ import dao.UsuarioDao;
 
 /**
  *
- * @author ALPHA OMEGA
+ * @author Kalango's
  */
 public class TesteCadastroUsuario {
     
     public static void main(String args[]){
         
         DataSource dataSource = new DataSource();
+        UsuarioBean novo = new UsuarioBean();
         UsuarioDao dao = new UsuarioDao(dataSource);
         
-        UsuarioBean novo = new UsuarioBean();
-        
-//        novo.setNome("Romildo Alves");
-//        novo.setLogin("romildo");
-//        novo.setSenha("12345");
+//        novo.setNome("Andrews");
+//        novo.setLogin("ninja");
+//        novo.setSenha("ninja");
 //        
 //        dao.salvarUsuario(novo.getNome(), novo.getLogin(), novo.getSenha());
         
 //        dao.logarUsuario("romildo", "12345");
 
-        dao.excluirUsuario("romildo");
+//          dao.excluirUsuario("romildo");
+          
+//            dao.alterarUsuario("sumido", "12345", "Andrews");
+
+        
+        if (dao.buscarTodos() != null){
+               for (UsuarioBean usuario : dao.buscarTodos()){
+                   System.out.printf(usuario.getCodigo()+"\n");
+                   System.out.printf(usuario.getNome()+"\n");
+                   System.out.printf(usuario.getLogin()+"\n");
+                   System.out.printf(usuario.getSenha()+"\n");
+            }
+        }else{
+            System.out.println("Nada Encontrado!");
+        }
     }
-    
 }
