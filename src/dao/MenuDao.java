@@ -24,7 +24,7 @@ public class MenuDao {
     }
     public void incluirMenu(String descricao, String precoVenda){
         
-        String sql = ("INSERT INTO FROM menu (descricao, precoVenda)"
+        String sql = ("INSERT INTO menu (descricao, valorVenda)"
                 + "VALUES (?,?)");
         
         try {
@@ -52,7 +52,7 @@ public class MenuDao {
     public boolean alterarMenu(String descricao, String valorVenda, int codigo){
         
         boolean alterar =false;
-        String sql = ("UPDATE menu SET descricao=?, valorVenda=? WHERE codigo=?");
+        String sql = ("UPDATE menu SET descricao=?, valorVenda=? WHERE codigo=?;");
         
         PreparedStatement ps;
         try {
