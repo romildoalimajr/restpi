@@ -5,17 +5,28 @@
  */
 package telas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+
 /**
  *
  * @author Andrews
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        
+        
     }
 
     /**
@@ -28,6 +39,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         telaInterna = new javax.swing.JPanel();
+        jblData = new javax.swing.JLabel();
+        jblHora = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPedidos = new javax.swing.JMenu();
         menuNovoPedido = new javax.swing.JMenuItem();
@@ -41,8 +54,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuBuscarProduto = new javax.swing.JMenuItem();
         menuAlterarProduto = new javax.swing.JMenuItem();
         menuExcluirProduto = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        menuLogout = new javax.swing.JMenuItem();
+        menuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -53,12 +70,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaInterna.setLayout(telaInternaLayout);
         telaInternaLayout.setHorizontalGroup(
             telaInternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
+            .addGap(0, 677, Short.MAX_VALUE)
         );
         telaInternaLayout.setVerticalGroup(
             telaInternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
+            .addGap(0, 492, Short.MAX_VALUE)
         );
+
+        jblData.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+
+        jblHora.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         menuPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fast-food64.png"))); // NOI18N
         menuPedidos.setText("Pedidos");
@@ -159,6 +180,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuProdutos);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconeSairSistema.png"))); // NOI18N
+        jMenu1.setText("Sair");
+        jMenu1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+
+        menuLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/refresh.png"))); // NOI18N
+        menuLogout.setText("Trocar Usuário");
+        menuLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLogoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuLogout);
+
+        menuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconeSair.png"))); // NOI18N
+        menuSair.setText("Sair do Sistema");
+        menuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuSair);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,18 +212,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(telaInterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(telaInterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jblData, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(telaInterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jblData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jblHora, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(telaInterna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(697, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuNovoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoPedidoActionPerformed
@@ -204,6 +259,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        
+        Date dataSistema = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        jblData.setText(formato.format(dataSistema));
+        
+        //hora
+        Timer timer = new Timer(1000, new hora());
+        timer.start();
     }//GEN-LAST:event_formWindowOpened
 
     private void menuNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoUsuarioActionPerformed
@@ -248,6 +311,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         produtoe.setVisible(true);
     }//GEN-LAST:event_menuExcluirProdutoActionPerformed
 
+    private void menuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLogoutActionPerformed
+        // TODO add your handling code here:
+        TelaLogin login = new TelaLogin();
+        JOptionPane.showMessageDialog(null, "Entre com Login e Senha!" );
+        login.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuLogoutActionPerformed
+
+    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Bye! Bye!");
+        System.exit(0);
+    }//GEN-LAST:event_menuSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -285,19 +362,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel jblData;
+    private javax.swing.JLabel jblHora;
     private javax.swing.JMenuItem menuAlterarProduto;
     private javax.swing.JMenuItem menuAlterarUsuario;
     private javax.swing.JMenuItem menuBuscarProduto;
     private javax.swing.JMenuItem menuBuscarUsuario;
     private javax.swing.JMenuItem menuExcluirProduto;
     private javax.swing.JMenuItem menuExcluirUsuario;
+    private javax.swing.JMenuItem menuLogout;
     private javax.swing.JMenuItem menuNovoPedido;
     private javax.swing.JMenuItem menuNovoProduto;
     private javax.swing.JMenuItem menuNovoUsuario;
     private javax.swing.JMenu menuPedidos;
     private javax.swing.JMenu menuProdutos;
+    private javax.swing.JMenuItem menuSair;
     private javax.swing.JMenu menuUsuarios;
     private javax.swing.JPanel telaInterna;
     // End of variables declaration//GEN-END:variables
+
+class hora implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Calendar now = Calendar.getInstance();
+            jblHora.setText(String.format("%1$tH:%1$tM:%1$tS", now));
+        }
+    }
 }

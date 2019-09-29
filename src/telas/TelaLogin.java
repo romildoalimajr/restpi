@@ -121,10 +121,10 @@ public class TelaLogin extends javax.swing.JFrame {
         String senha = new String(passSenha.getPassword());
         
         if(dao.logarUsuario(login, senha)!= false){
-            JOptionPane.showMessageDialog(null, "Bem Vindo!");
             TelaPrincipal principal = new TelaPrincipal();
             principal.setVisible(true);
             dispose();
+            JOptionPane.showMessageDialog(null, "Bem Vindo!");
         }else{
             JOptionPane.showMessageDialog(null, "Usuário e/ou Senha Inválido!");
             txtLogin.setText("");
