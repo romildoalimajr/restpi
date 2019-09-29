@@ -162,8 +162,12 @@ public class UsuarioDao {
         
         try {
             ps = dataSource.getConnection().prepareStatement(sql);
-            rs = ps.executeQuery();
-                
+            ps.execute();
+            
+            rs = ps.executeQuery(sql);
+            
+            
+            
             while(rs.next()){
                 
                 UsuarioBean usuario = new UsuarioBean();
