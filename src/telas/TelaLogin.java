@@ -57,6 +57,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 btnEntrarActionPerformed(evt);
             }
         });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -121,8 +126,8 @@ public class TelaLogin extends javax.swing.JFrame {
         String senha = new String(passSenha.getPassword());
         
         if(dao.logarUsuario(login, senha)!= false){
-            TelaPrincipal principal = new TelaPrincipal();
-            principal.setVisible(true);
+            TelaPrincipal start = new TelaPrincipal();
+            start.setVisible(true);
             dispose();
             JOptionPane.showMessageDialog(null, "Bem Vindo!");
         }else{
@@ -137,6 +142,26 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+        // TODO add your handling code here:
+        DataSource dataSource = new DataSource();
+        UsuarioDao dao = new UsuarioDao(dataSource);
+        
+        String login = new String(txtLogin.getText());
+        String senha = new String(passSenha.getPassword());
+        
+        if(dao.logarUsuario(login, senha)!= false){
+            TelaPrincipal start = new TelaPrincipal();
+            start.setVisible(true);
+            dispose();
+            JOptionPane.showMessageDialog(null, "Bem Vindo!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuário e/ou Senha Inválido!");
+            txtLogin.setText("");
+            passSenha.setText("");
+        }
+    }//GEN-LAST:event_btnEntrarKeyPressed
 
     /**
      * @param args the command line arguments
